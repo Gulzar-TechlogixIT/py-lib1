@@ -1,22 +1,32 @@
-name: Python library CI
+﻿name: Python library CI
+
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   test-build:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: |
-          python -m pip install --upgrade pip build
-          python -m pip install pytest
-          if [ -d tests ]; then python -m pytest; fi
-          python -m build
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip build pytest
+          python -m pip install -e .
+
+      - name: Run tests
+        run: python -m pytest
+
+      - name: Build distributions
+        run: python -m build

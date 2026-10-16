@@ -3,11 +3,11 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "py-lib1"
+name = "gulzar-techlogix-text-utils"
 version = "0.1.0"
 description = "Shared Python utilities"
 requires-python = ">=3.12"
 dependencies = []
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/py_lib1"]
+packages = ["src/gulzar_text_utils"]
